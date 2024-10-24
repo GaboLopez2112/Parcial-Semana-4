@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Agregar o Actualizar Servicio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+<br>
+<div class="container mt-5">
+  <h1 th:text="${servicio.servicio_id  != null} ? 'Actualizar Servicio' : 'Agregar Servicio'">Agregar Servicio</h1>
+
+  <!-- Formulario dinámico -->
+  <form th:action="${servicio.servicio_id != null} ? @{/servicio/actualizar/{id}(id=${servicio.servicio_id})} : @{/servicio/guardar}"
+        th:object="${servicio}" method="post">
+    <input type="hidden" th:if="${servicio.servicio_id != null}" th:field="*{servicio_id}">
+
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input type="number" step="0.01" id="precio" th:field="*{precio}" class="form-control" required>
+    </div>
+
+    <!-- Botón dinámico: cambia entre "Guardar" y "Actualizar" -->
+    <button type="submit" class="btn btn-primary" th:text="${servicio.servicio_id != null} ? 'Actualizar' : 'Guardar'"></button>
+    <a href="/servicio" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+</body>
+</html>

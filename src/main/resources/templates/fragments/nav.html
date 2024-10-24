@@ -1,0 +1,15 @@
+<header th:fragment="nav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+    <a class="navbar-brand" th:href="@{/}">PetGroomer</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/producto}">Productos</a>
+        </li>
+        <li>
+          <a class="nav-link" th:href="@{/servicio}">Servicios</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
